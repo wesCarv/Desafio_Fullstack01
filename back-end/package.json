@@ -24,6 +24,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.3",
     "nodemon": "^2.0.21",
     "sucrase": "^3.30.0"
