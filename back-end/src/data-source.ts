@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm"
 import path from "path"
-import "dotenv"
+import "dotenv/config"
 
 const AppDataSource = new DataSource(
     process.env.NODE_ENV === "test" ?
@@ -22,6 +22,6 @@ const AppDataSource = new DataSource(
         entities: [path.join(__dirname, "./entities/**.{js,ts}")],
         migrations: [path.join(__dirname, "./migrations/**.{js,ts}")]
     }
+    
 )
-
 export default AppDataSource
