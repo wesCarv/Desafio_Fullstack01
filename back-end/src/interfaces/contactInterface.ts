@@ -1,10 +1,10 @@
-export interface IClientRequest {
+export interface IContactRequest {
     name: string
     email: string
     telephone: string
 }
 
-export interface IClient{
+export interface IContact{
     id: string
     name: string
     email:string
@@ -12,7 +12,7 @@ export interface IClient{
     registeredAt: Date
 }
 
-export interface IClientUpdate {
+export interface IContactUpdate {
     name?: string
     email?: string
     telephone?: string
