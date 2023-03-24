@@ -6,8 +6,8 @@ import { client } from "../../serializers/clientSerializer";
 
 export const createClientService = async (data :IClientRequest) : Promise<IClient> => {
     const { email } = data
-
-    const userRepository = AppDataSource.getRepository(Client)
+    
+    const userRepository = AppDataSource.getRepository(Client)   
 
     const verifyEmail = userRepository.findOneBy({email:email})
 
@@ -22,6 +22,6 @@ export const createClientService = async (data :IClientRequest) : Promise<IClien
     const clientResponse = await client.validate(clients , {
         stripUnknown: true
     })
-
+   
     return clientResponse
 }
