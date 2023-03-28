@@ -11,5 +11,6 @@ export const clientRoutes = Router()
 clientRoutes.post("" , createClientController)
 clientRoutes.get("" , listClientController)
 clientRoutes.patch("/:id" , updateClientController)
-clientRoutes.delete("/id" , deleteClientController)
 clientRoutes.post("" , loginController)
+clientRoutes.delete("/:id" , deleteClientController)
+
