@@ -4,7 +4,7 @@ import { deleteCLient } from "../../services/clients/deleteClientService";
 export const deleteClientController =async (req:Request , resp: Response) => {
     const {id} = req.params
 
-    await deleteCLient(id)
+    const clientDelete = await deleteCLient(id)
 
-    return resp.status(204)
+    return resp.status(204).json(clientDelete)
 }
