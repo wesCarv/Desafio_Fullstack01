@@ -19,6 +19,8 @@ export const updateClientService = async (data : any , clientIdParams: string): 
         ...data
     })
 
+    await clientRepository.save(updatedClient)
+
     const updatedClientWithoutPassword = await clientUpdate.validate(
         updatedClient,
         {
