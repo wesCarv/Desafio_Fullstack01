@@ -1,14 +1,9 @@
 import AppDataSource from "../../data-source"
 import { Client } from "../../entities/clientEntity"
 import { AppError } from "../../errors/appError"
-import { client } from "../../serializers/clientSerializer"
+import { clientUpdate } from "../../serializers/clientSerializer"
 
-export const updateClientService = async (data : any , clientIdParams: string , clients : any): Promise<object> => {
-
-    if(clientIdParams !== clients.id){
-        throw new AppError("Client not authorized", 401)
-    }
-
+export const updateClientService = async (data : any , clientIdParams: string): Promise<object> => {
     const clientRepository = AppDataSource.getRepository(Client)
 
     const clientExists = clientRepository.findOneBy({
@@ -24,12 +19,15 @@ export const updateClientService = async (data : any , clientIdParams: string , 
         ...data
     })
 
-    const updatedClientWithoutPassword = await client.validate(
+    await clientRepository.save(updatedClient)
+
+    const updatedClientWithoutPassword = await clientUpdate.validate(
         updatedClient,
         {
           abortEarly: false,
           stripUnknown: true,
         }
       );
+
       return updatedClientWithoutPassword;
 }

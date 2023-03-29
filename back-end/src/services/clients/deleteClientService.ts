@@ -11,7 +11,7 @@ export const deleteCLient = async (id: string) => {
         throw new AppError("Client not found" , 404)
     }
 
-    userRepository.delete(id)
+    userRepository.delete({id})
 
-    return {}
+    return 
 }
