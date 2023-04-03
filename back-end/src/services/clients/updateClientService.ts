@@ -1,12 +1,14 @@
+import { create } from "domain"
 import AppDataSource from "../../data-source"
 import { Client } from "../../entities/clientEntity"
 import { AppError } from "../../errors/appError"
-import { clientUpdate } from "../../serializers/clientSerializer"
+import { client, clientUpdate } from "../../serializers/clientSerializer"
+import bcrypt, { hash } from "bcryptjs"
 
 export const updateClientService = async (data : any , clientIdParams: string): Promise<object> => {
     const clientRepository = AppDataSource.getRepository(Client)
 
-    const clientExists = clientRepository.findOneBy({
+    const clientExists = await clientRepository.findOneBy({
         id: clientIdParams
     })
 
@@ -14,12 +16,12 @@ export const updateClientService = async (data : any , clientIdParams: string): 
         throw new AppError("Client don't exists" , 404)
     }
 
-    const updatedClient = clientRepository.create({
-        ...clientExists,
-        ...data
+    await clientRepository.update({id: clientIdParams} ,{
+        ...data,
+        password: data.password && bcrypt.hashSync(data.password, 10)
     })
 
-    await clientRepository.save(updatedClient)
+    const updatedClient = await clientRepository.findOneBy({id: clientIdParams})
 
     const updatedClientWithoutPassword = await clientUpdate.validate(
         updatedClient,

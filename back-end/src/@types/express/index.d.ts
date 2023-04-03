@@ -5,7 +5,6 @@ declare global {
     interface Request {
       client: {
         id: string;
-        telephone: string;
       };
     }
   }

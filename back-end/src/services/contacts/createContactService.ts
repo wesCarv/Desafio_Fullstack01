@@ -6,9 +6,9 @@ import {contact} from "../../serializers/contactSerializer"
 
 export const createContactService =async (data: IContactRequest): Promise<IContact> => {
 
-    const {telephone} = data
+    const telephone = data.telephone
     const userRepository = AppDataSource.getRepository(Contact)
-
+ 
     const contactExists = userRepository.findOneBy({telephone:telephone})
 
     if(!contactExists){

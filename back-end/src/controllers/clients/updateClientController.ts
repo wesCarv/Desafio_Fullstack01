@@ -5,7 +5,7 @@ export const updateClientController =async (req : Request , resp : Response) => 
     const id = req.params.id
     const data = req.body
 
-    const updatedClient = await updateClientService(id , data)
+    const updatedClient = await updateClientService(data , id)
 
     return resp.status(201).json(updatedClient)
 

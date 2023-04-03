@@ -20,7 +20,6 @@ export const client = yup.object().shape({
 export const clientUpdate = yup.object().shape({
     name: yup.string(),
     email: yup.string().email(),
-    password: yup.string(),
     telephone: yup.string()
 })
 

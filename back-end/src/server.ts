@@ -1,6 +1,6 @@
+
 import app from "./app"
 import AppDataSource from "./data-source"
-import 'express-async-errors'
 
 (async () => {
 
